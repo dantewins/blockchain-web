@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/table"; // Ensure you have these components
 import { BlockchainContext } from "@/context/blockchain-context"; // Adjust the import path as necessary
 import { IBlock, ITransaction } from "@/lib/blockchain"; // Ensure correct paths
+import Link from "next/link";
 
 const Blocks: React.FC = () => {
     // Access the blockchain context
@@ -138,10 +139,10 @@ const Blocks: React.FC = () => {
                                             <TableRow key={txIndex}>
                                                 <TableCell>{txIndex}</TableCell>
                                                 <TableCell className="font-mono text-sm">
-                                                    {tx.fromAddress ? truncate(tx.fromAddress, 25) : "System"}
+                                                    {tx.fromAddress ? <Link href={"/wallet/" + tx.fromAddress} className="text-blue-600 underline">{truncate(tx.fromAddress, 25)}</Link> : "System"}
                                                 </TableCell>
-                                                <TableCell className="font-mono text-sm">
-                                                    {truncate(tx.toAddress, 25)}
+                                                <TableCell className="font-mono text-sm ">
+                                                    {<Link href={"/wallet/" + tx.toAddress} className="text-blue-600 underline">{truncate(tx.toAddress, 25)}</Link>}
                                                 </TableCell>
                                                 <TableCell className="font-mono text-sm">
                                                     {tx.amount}

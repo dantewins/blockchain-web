@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 import React from 'react'
 
@@ -7,7 +8,9 @@ const Header = () => {
         <header className="container mx-auto py-2 top-0 w-full">
             <div className="flex h-14 items-center justify-between">
                 <div className="flex items-center space-x-2">
-                    <span className="text-xl font-semibold">Blockchain</span>
+                    <Link href="/">
+                        <span className="text-xl font-semibold">Blockchain</span>
+                    </Link>
                 </div>
                 <div className="flex items-center space-x-2">
                     <Button variant="ghost" size="sm" asChild>

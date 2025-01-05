@@ -66,8 +66,8 @@ const PendingTransactions: React.FC = () => {
                                     <TableBody>
                                         {pendingTransactions.map((tx, index) => (
                                             <TableRow key={index}>
-                                                <TableCell className="font-mono text-sm">{truncate(tx.fromAddress ?? "N/A", 25)}</TableCell>
-                                                <TableCell className="font-mono text-sm">{truncate(tx.toAddress ?? "N/A", 25)}</TableCell>
+                                                <TableCell className="font-mono text-sm">{tx.fromAddress ? <Link href={"/wallet/" + tx.fromAddress} className="text-blue-600 underline">{truncate(tx.fromAddress, 25)}</Link> : "N/A"}</TableCell>
+                                                <TableCell className="font-mono text-sm">{tx.toAddress ? <Link href={"/wallet/" + tx.fromAddress} className="text-blue-600 underline">{truncate(tx.toAddress, 25)}</Link> : "N/A"}</TableCell>
                                                 <TableCell className="font-mono text-sm">{tx.amount}</TableCell>
                                                 <TableCell className="font-mono text-sm">{new Date(tx.timestamp).toLocaleString()}</TableCell>
                                             </TableRow>

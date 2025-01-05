@@ -348,7 +348,7 @@ export const BlockchainProvider: FC<BlockchainProviderProps> = ({ children }) =>
 
   if (loading) {
     // Optionally, render a loading indicator here
-    return <div>Loading Blockchain...</div>;
+    return '';
   }
 
   return (
