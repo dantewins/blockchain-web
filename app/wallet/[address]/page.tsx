@@ -4,14 +4,15 @@ import React from 'react';
 import Wallet from '@/components/wallet';
 
 interface WalletPageProps {
-    params: {
-        address: string;
-    };
+  params: Promise<{
+    address: string;
+  }>;
 }
 
-const WalletPage: React.FC<WalletPageProps> = async ({ params }) => {
-    const { address } = await params;
-    return <Wallet address={address} />;
+const WalletPage = async ({ params }: WalletPageProps) => {
+  // await the promise to get the actual params object
+  const { address } = await params;
+  return <Wallet address={address} />;
 };
 
 export default WalletPage;
