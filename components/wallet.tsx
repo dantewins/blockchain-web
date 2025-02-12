@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import Header from "@/components/header";
-import { Separator } from "@radix-ui/react-dropdown-menu";
 
 interface WalletProps {
     address: string;

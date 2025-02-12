@@ -1,4 +1,3 @@
-// lib/blockchain/Block.ts
 import SHA256 from 'crypto-js/sha256';
 import { Transaction } from '@/lib/blockchain/transaction';
 import { IBlock, ITransaction } from '@/lib/blockchain/types';
@@ -14,8 +13,8 @@ export class Block implements IBlock {
         this.timestamp = timestamp;
         this.transactions = transactions;
         this.previousHash = previousHash;
-        this.hash = this.calculateHash();
         this.nonce = 0;
+        this.hash = this.calculateHash();
     }
 
     calculateHash(): string {

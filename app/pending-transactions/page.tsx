@@ -26,7 +26,7 @@ const PendingTransactions: React.FC = () => {
                     onClick: () => console.log("close"),
                 },
             });
-        } catch (error: any) {
+        } catch {
             toast("Operation failed", {
                 description: "Failed to mine transactions, please try again",
                 action: {

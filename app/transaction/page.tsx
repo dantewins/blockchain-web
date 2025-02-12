@@ -66,8 +66,7 @@ const Transaction: React.FC = () => {
 
             setToAddress("");
             setAmount('0');
-        } catch (error: any) {
-            console.log(error)
+        } catch {
             toast('Operation failed.', {
                 description: "An unexpected error occurred",
                 action: {

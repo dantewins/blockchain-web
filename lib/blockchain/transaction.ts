@@ -1,4 +1,3 @@
-// lib/blockchain/Transaction.ts
 import SHA256 from 'crypto-js/sha256';
 import { ec as EC } from 'elliptic';
 import { ITransaction } from '@/lib/blockchain/types';
@@ -20,7 +19,10 @@ export class Transaction implements ITransaction {
     }
 
     calculateHash(): string {
-        return SHA256(this.fromAddress + this.toAddress + this.amount).toString();
+        // Include timestamp so that each transaction hash is unique
+        return SHA256(
+            this.fromAddress + this.toAddress + this.amount + this.timestamp
+        ).toString();
     }
 
     signTransaction(signingKey: EC.KeyPair): void {
@@ -34,7 +36,8 @@ export class Transaction implements ITransaction {
     }
 
     isValid(): boolean {
-        if (this.fromAddress === null) return true; // Mining reward
+        // If the transaction is a mining reward, no signature is required.
+        if (this.fromAddress === null) return true;
 
         if (!this.signature || this.signature.length === 0) {
             throw new Error('No signature in this transaction');

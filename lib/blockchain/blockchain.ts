@@ -1,8 +1,6 @@
-// lib/blockchain/Blockchain.ts
 import { IBlockchain, IBlock, ITransaction } from '@/lib/blockchain/types';
 import { Block } from '@/lib/blockchain/block';
 import { Transaction } from '@/lib/blockchain/transaction';
-import { ec as EC } from "elliptic";
 
 export class Blockchain implements IBlockchain {
     chain: IBlock[];
@@ -39,7 +37,10 @@ export class Blockchain implements IBlockchain {
     }
 
     addTransaction(transaction: ITransaction): void {
-        if (!transaction.fromAddress || !transaction.toAddress) {
+        // Ensure that non-reward transactions have both from and to addresses
+        if (transaction.fromAddress === null && transaction.toAddress) {
+            // Mining reward transactions (fromAddress is null) are allowed
+        } else if (!transaction.fromAddress || !transaction.toAddress) {
             throw new Error('Transaction must include from and to address');
         }
 
@@ -81,7 +82,8 @@ export class Blockchain implements IBlockchain {
                 return false;
             }
 
-            if (currentBlock.previousHash !== previousBlock.calculateHash()) {
+            // Compare with the previous block's stored hash
+            if (currentBlock.previousHash !== previousBlock.hash) {
                 return false;
             }
         }
@@ -89,7 +91,7 @@ export class Blockchain implements IBlockchain {
         return true;
     }
 
-    static fromData(data: any, ec: EC): Blockchain {
+    static fromData(data: any): Blockchain {
         const blockchain = new Blockchain();
         blockchain.difficulty = data.difficulty;
         blockchain.miningReward = data.miningReward;

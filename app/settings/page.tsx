@@ -80,7 +80,7 @@ const Settings = () => {
           onClick: () => console.log("close"),
         },
       });
-    } catch (error) {
+    } catch {
       toast('Operation failed.', {
         description: "An unexpected error occurred",
         action: {
@@ -139,7 +139,7 @@ const Settings = () => {
                   min={100}
                 />
                 <p className="text-sm text-muted-foreground">
-                  How much "coins" a miner receives for successfully creating a new block for the chain.
+                  How much &quot;coins&quot; a miner receives for successfully creating a new block for the chain.
                 </p>
                 <p className="text-sm text-muted-foreground">
                   Default: 100
